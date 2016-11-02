@@ -1,0 +1,45 @@
+============================================================================
+VOLE - A Neat C++ COM/Automation Driver
+
+TODO
+
+; Created:  21st January 2007
+; Updated:  27th April 2010
+
+============================================================================
+
+
+VOLE 0.8 TODOs:
+===============
+
+? 3. Improve the help file(s)
+-----------------------------
+
+Priority: medium
+
+
+? 4. Expose DISPIDs of members to client code, for efficient invocation
+-----------------------------------------------------------------------
+
+Priority: high
+
+
+
+
+VOLE 0.9+ TODOs:
+===============
+
+? 1. Support named arguments
+----------------------------
+
+Priority: high
+
+
+? 2. Create a typelib => code generator to produce "type-safe" wrappers
+-----------------------------------------------------------------------
+
+
+
+
+
+=============================== End of file ================================

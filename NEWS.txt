@@ -1,0 +1,63 @@
+============================================================================
+VOLE - A Neat C++ COM/Automation Driver
+
+News
+
+; Created:  21st January 2007
+; Updated:  9th August 2012
+
+============================================================================
+
+
+News:
+
+  9th Aug 2012      -   Release of VOLE 0.7.4
+
+  1st Feb 2011      -   Release of VOLE 0.7.3
+
+  28th Apr 2010     -   Release of VOLE 0.7.2
+
+  27th Apr 2010     -   Release of VOLE 0.7.1
+
+  5th Mar 2010      -   Release of VOLE 0.6.6
+
+  21st Jan 2010     -   Release of VOLE 0.6.5
+
+  19th Jun 2009     -   Release of VOLE 0.6.4
+
+  13th May 2009     -   Release of VOLE 0.6.3
+
+  31st Oct 2008     -   Release of VOLE 0.6.2
+
+  12th Sep 2008     -   Release of VOLE 0.6.1
+
+  7th Sep 2008      -   Release of VOLE 0.5.2
+
+  23rd Aug 2008     -   Release of VOLE 0.5.1
+
+  15th Aug 2008     -   Release of VOLE 0.4.4
+
+  15th Aug 2008     -   Release of VOLE 0.4.3
+
+  16th Jun 2008     -   Release of VOLE 0.4.2
+
+  13th Apr 2008     -   Release of VOLE 0.4.1
+
+  8th Apr 2008      -   Release of VOLE 0.3.3
+
+  18th Nov 2007     -   Release of VOLE 0.3.2
+
+  2nd Nov 2007      -   Release of VOLE 0.3.1
+
+  5th Aug 2007      -   Release of VOLE 0.2.5
+
+  30th Apr 2007     -   Release of VOLE 0.2.4
+
+  10th Apr 2007     -   Release of VOLE 0.2.3
+
+  6th Apr 2007      -   Release of VOLE 0.2.2
+
+  21st Jan 2007     -   Release of VOLE 0.2.1
+
+
+=============================== End of file ================================

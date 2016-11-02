@@ -1,0 +1,41 @@
+============================================================================
+VOLE - A Neat C++ COM/Automation Driver
+
+Authors
+
+; Created:  21st January 2007
+; Updated:  9th August 2012
+
+============================================================================
+
+
+Authors:
+
+  Matthew Wilson
+  Garth Lancaster (advice and useful criticism)
+
+
+Bug reports, fixes and suggestions (for which we are very grateful):
+
+  Mirza Hadzic     - request for default construction
+  NiknSt           - request for default construction
+  Eduardo Bezerra  - Borland C/C++ 5.82 problems
+  Vivi Orunitia    - Borland C/C++ 5.82 problems
+  Mark Ellis       - problems with vole::create() argument ambiguities
+  Eugen Schindler  - GCC include issues; coercion level issues
+  Ondra Kamenik    - GCC compilation errors
+  Mario Lecafe     - defects in examples
+  r0bs             - defect that fails to propagate coercion level to
+                     return vole::object instances
+  phi2             - request for date/time return types
+  Thomas Krebs     - report of defect, when using vole::collection
+  erosh            - request for in/out parameters
+  Duncan McQueen   - request for in/out parameters
+  Alex Santana     - put_prop() code generation defect
+  Bill Lofgren     - request for/about (implicit) compatibility with MFC's
+                     CString
+
+
+Contributions are welcomed.
+
+=============================== End of file ================================

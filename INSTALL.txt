@@ -1,0 +1,34 @@
+============================================================================
+VOLE - A Neat C++ COM/Automation Driver
+
+Install
+
+; Created:  21st January 2007
+; Updated:  9th August 2012
+
+============================================================================
+
+
+
+VOLE is a 100% header-only library, and so requires no building. It does,
+however, depend on the STLSoft libraries (also 100% header-only; see
+http://stlsoft.org/), version 1.9.115, or later.
+
+To use VOLE, you need to ensure that the VOLE include directory and the
+STLSoft directory are in your include paths.
+
+One good way to acheive this is to define two environment variables, e.g.
+
+    STLSOFT=C:\opensource\STLSoft\stlsoft-1.9.115
+    VOLE=C:\opensource\VOLE\vole-0.7.4
+
+and then to use the include directories in your makefiles and with your
+compiler tools, e.g.
+
+    cl -I%VOLE%/include -I%STLSOFT%/include vole_test.cpp
+
+
+NOTE: VOLE depends on the (header-only) STLSoft libraries - version
+  1.9.115 or later - available from http://stlsoft.org/.
+
+=============================== End of file ================================

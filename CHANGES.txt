@@ -1,0 +1,625 @@
+============================================================================
+VOLE - A Neat C++ COM/Automation Driver
+
+Changes
+
+; Created:  21st January 2007
+; Updated:  9th August 2012
+
+============================================================================
+
+
+
+9th August 2012 - 0.7.4
+=======================
+
+Summary:
+--------
+
+ * refactored to remove all possible non-public functions to helper class, in order to present polished interface to IDE context-sensitive help / 'Intellisense'
+ * added support for MFC type arguments (currently only CString)
+ * 64-bit compatibility
+ * added makefiles for VC++ 10 and VC++ 10 (x64)
+ * added test.unit.variant test project
+ * NOTE: bundles xTests 0.16
+ * NOTE: depends on STLSoft 1.9.115
+
+
+Details:
+--------
+
+General:
+
+Application Layer:
+
+ + include/vole/argument_traits/MFC_types.hpp:
+    + added include/vole/argument_traits/MFC_types.hpp, which provides specialisations of vole::com_arguments_traits for MFC types (currently only CString)
+
+ ~ include/vole/argument_traits/com_argument_traits.hpp:
+    ~ minor doc improvements to guide users
+
+ ~ include/vole/argument_traits/std_types.hpp:
+    ~ correct #includes
+    ~ 64-bit compatibility
+
+ ~ include/vole/collection.hpp:
+    ~ tidying
+
+ ~ include/vole/internal/generated/get_properties.hpp:
+ ~ include/vole/internal/generated/methods.hpp:
+ ~ include/vole/internal/generated/put_properties.hpp:
+ ~ include/vole/internal/generated/void_methods.hpp:
+    ~ refactored to remove all possible non-public functions to helper class, in order to present polished interface to IDE context-sensitive help / 'Intellisense'
+
+ ~ include/vole/object.hpp:
+    + added conditional include for include/vole/argument_traits/MFC_types.hpp, to provide argument compatibility with MFC types (currently only CString)
+    ~ simplified refactoring
+    ~ refactored to remove all possible non-public functions to helper class, in order to present polished interface to IDE context-sensitive help / 'Intellisense'
+    ~ reordering and taking methods out of line in preparation for refactoring of worker functionality
+    ~ improved documentation / context-sensitive help
+    ~ taken certain methods out of line
+    ~ formatting
+    ~ tidying
+    ~ swap() now swaps locale and coercion level, in addition to object reference
+    ~ 64-bit compatibility
+
+ ~ include/vole/util/common.hpp:
+    ~ now requires STLSoft 1.9.115 or later
+
+ ~ include/vole/util/variant.hpp:
+    ~ making header self-contained
+
+ + include/vole/util/variant_base_type.hpp:
+    + added include/vole/util/variant_base_type.hpp, which defines the vole::variant_base_type typedef, used throughout the library for representation and manipulation of VARIANTs
+
+Distribution:
+
+ ~ scripts/make_server.rb:
+    ~ refactored to remove all possible non-public functions to helper class, in order to present polished interface to IDE context-sensitive help / 'Intellisense'
+
+Makefiles / Project-files:
+
+ ~ build/ar/makefile:
+ ~ build/bc56/makefile:
+ ~ build/bc59x/makefile:
+ ~ build/bc61x/makefile:
+ ~ build/como433/makefile:
+ ~ build/cw8/makefile:
+ ~ build/dm/makefile:
+ ~ build/gcc34/makefile:
+ ~ build/icl10/makefile:
+ ~ build/icl11/makefile:
+ ~ build/icl6/makefile:
+ ~ build/icl7/makefile:
+ ~ build/icl8/makefile:
+ ~ build/icl9/makefile:
+ ~ build/vc6/makefile:
+ ~ build/vc7/makefile:
+ ~ build/vc71/makefile:
+ ~ build/vc8.x64/makefile:
+ ~ build/vc8/makefile:
+ ~ build/vc9.x64/makefile:
+ ~ build/vc9/makefile:
+    + added compile.test.scratch target
+    + compile target now includes compile.test.scratch and compile.examples
+    + added test.unit.variant
+
+ + build/vc10.x64/makefile:
+ + build/vc10/makefile:
+    + added compile.test.scratch target
+    + compile target now includes compile.test.scratch and compile.examples
+    ~ now defines _AFXDLL for Debug/Release Multithreaded Dll builds (VC++ 10+)
+    + added test.unit.variant
+
+Examples:
+
+Test:
+
+Test.Unit:
+
+Test.Component:
+
+Test.Performance:
+
+Test.Scratch:
+
+Depends on:
+
+ * STLSoft 1.9.115 or later
+   (http://stlsoft.org/)
+
+
+
+1st February 2011 - 0.7.3
+=========================
+
+Summary:
+--------
+
+ * simplified the naming of bin and lib targets within the makefiles
+ * various preparations for STLSoft 1.10
+ * NOTE: bundles xTests 0.16
+ * NOTE: depends on STLSoft 1.9.108
+
+Details:
+--------
+
+General:
+
+Application Layer:
+
+ ~ include/vole/error/exceptions.hpp:
+    ~ revert to STLSoft 1.9 compatibility, but make independent of exception_string operation method changes, in preparation for STLSoft 1.10
+    ~ preparation for STLSoft 1.10
+    ~ updated to use exception_string_creator
+
+ ~ include/vole/object.hpp:
+    ~ preparation for STLSoft 1.10
+    ~ updated to use exception_string_creator
+
+ ~ include/vole/util/common.hpp:
+    ~ now requires STLSoft 1.9.108
+
+Distribution:
+
+Makefiles / Project-files:
+
+ ~ build/ar/makefile:
+ ~ build/bc56/makefile:
+ ~ build/bc59x/makefile:
+ ~ build/bc61x/makefile:
+ ~ build/como433/makefile:
+ ~ build/cw8/makefile:
+ ~ build/dm/makefile:
+ ~ build/gcc34/makefile:
+ ~ build/icl10/makefile:
+ ~ build/icl11/makefile:
+ ~ build/icl6/makefile:
+ ~ build/icl7/makefile:
+ ~ build/icl8/makefile:
+ ~ build/icl9/makefile:
+ ~ build/vc6/makefile:
+ ~ build/vc7/makefile:
+ ~ build/vc71/makefile:
+ ~ build/vc8.x64/makefile:
+ ~ build/vc8/makefile:
+ ~ build/vc9.x64/makefile:
+ ~ build/vc9/makefile:
+    ~ simplified the naming of bin and lib targets within the makefiles
+
+Examples:
+
+Test:
+
+Test.Unit:
+
+Test.Component:
+
+Test.Performance:
+
+Test.Scratch:
+
+Depends on:
+
+ * STLSoft 1.9.108 or later
+   (http://stlsoft.org/)
+
+
+
+28th April 2010 - 0.7.2
+=======================
+
+Summary:
+--------
+
+ * added vole::object::has_member()
+ * added vole::object::get_memberId()
+ * fixed put_prop() code-generated defect
+ * NOTE: bundles xTests 0.15.1
+ * NOTE: depends on STLSoft 1.9.97
+
+Details:
+--------
+
+General:
+
+Application Layer:
+
+ ~ include/vole/internal/generated/put_properties.hpp:
+    ~ fixed put_prop() defect
+
+ ~ include/vole/object.hpp:
+    + added has_member()
+    + added get_memberId()
+
+ ~ scripts/make_server.rb:
+    ~ fixed put_prop() defect
+
+ ~ test/component/test.component.Excel.driver.1/test.component.excel.driver.1.cpp:
+    ~ fixed put_prop() defect
+
+ ~ test/component/vole.test.component.vc9.sln:
+    ~ fixed put_prop() defect
+
+
+Distribution:
+
+Makefiles / Project-files:
+
+Examples:
+
+Test:
+
+Test.Unit:
+
+Test.Component:
+
+Test.Performance:
+
+Test.Scratch:
+
+Depends on:
+
+ * STLSoft 1.9.97 or later
+   (http://stlsoft.org/)
+
+
+
+27th April 2010 - 0.7.1
+=======================
+
+Summary:
+--------
+
+ * Added "argument traits" mechanism, allowing arbitrary extension of compatible argument types
+ * Substantial rework of implementation
+ * NOTE: bundles xTests 0.15.1
+ * NOTE: depends on STLSoft 1.9.97
+
+Details:
+--------
+
+General:
+
+Application Layer:
+
+ ~ include/vole/object.hpp:
+    ~ vole/object/generated directory renamed to vole/internal/generated
+    ~ vole/return_traits/return_traits.hpp => vole/return_traits/com_return_traits.hpp
+    ~ object::invoke_method_impl() is renamed to object::internal_invoke_method()
+    ~ object::Invoke() is renamed to object::internal_Invoke()
+    ~ object::GetIDOfName() is renamed to object::internal_GetIDOfName()
+    ~ no-namespace compatibility
+
+ ~ include/vole/collection.hpp:
+    ~ no-namespace compatibility
+
+ ~ include/vole/error/exceptions.hpp:
+    ~ trivial changes
+    + invocation_exception now provides the DISPID of the failed method/property
+
+ + include/vole/argument_traits/com_argument_traits.hpp:
+ + include/vole/argument_traits/std_types.hpp:
+    + now supports user customisation of 
+
+
+ ~ include/vole/return_traits/builtins.hpp:
+ ~ include/vole/return_traits/com_return_traits.hpp:
+ ~ include/vole/return_traits/ole_types.hpp:
+ ~ include/vole/return_traits/return_traits.hpp:
+ ~ include/vole/return_traits/std_types.hpp:
+    ~ vole/return_traits/return_traits.hpp => vole/return_traits/com_return_traits.hpp
+
+ ~ include/vole/util/common.hpp:
+    + added VOLE_METHOD_TEMPLATE_RETURN_SUPPORT, indicating when a compiler supports the get_property<type>(L"prop-name") syntax
+
+Distribution:
+
+Makefiles / Project-files:
+
+Examples:
+
+Test:
+
+Test.Unit:
+
+Test.Component:
+
+Test.Performance:
+
+Test.Scratch:
+
+Depends on:
+
+ * STLSoft 1.9.97 or later
+   (http://stlsoft.org/)
+
+
+
+5th March 2010 - 0.6.6 released
+===============================
+
+ ~ include/vole/object.hpp:
+    ~ result out-parameter now passed by pointer
+    ~ get_checked_disp_ now protected, so can be used in collection::operator []
+
+ ~ include/vole/object/generated/get_properties.hpp:
+    ~ result out-parameter now passed by pointer
+
+ ~ include/vole/object/generated/methods.hpp:
+    ~ result out-parameter now passed by pointer
+
+ * requires STLSoft 1.9.94
+
+
+
+21st January 2010 - 0.6.5 released
+==================================
+
+ ~ include/vole/object.hpp:
+    ~ now compatible with VC++ 8+'s "safe string" library
+    ~ fixed incorrected error message for failed conversion to object
+
+ ~ include/vole/return_traits/builtins.hpp:
+    ~ fixed truncation defect in com_return_traits<int>
+    ~ fixed truncation defect in com_return_traits<long>
+    ~ fixed use of uintVal for VT_I8 in float conversion
+    ~ fixed use of uintVal for VT_I8 in double conversion
+    ~ fixed use of double instead of float in casts in float conversion
+
+ ~ include/vole/return_traits/coercion_level.hpp:
+ ~ include/vole/return_traits/std_types.hpp:
+ ~ include/vole/return_traits/time_types.hpp:
+    ~ documentation markup fix
+
+ + test/component/test.component.Excel.driver.1
+
+ * requires STLSoft 1.9.90
+
+
+19th June 2009 - 0.6.4 released
+===============================
+
+ ~ include/vole/object.hpp:
+    ~ corrects defect in default constructor, whereby coercion level parameter, if specified, is ignored
+
+ ~ include/vole/util/common.hpp:
+    ~ updated version
+
+ * requires STLSoft 1.9.85
+
+
+13th May 2009 - 0.6.3 released
+==============================
+
+ ~ include/vole/error/exceptions.hpp:
+    ~ invocation_exception now passes through the underlying scode when DISP_E_EXCEPTION
+
+ ~ include/vole/util/common.hpp:
+    ~ updated version
+
+ * requires STLSoft 1.9.81
+
+
+15th Sep 2008 - 0.6.2 released
+==============================
+
+ ~ fixed defect in com_return_traits<object>::convert(), which results in
+   returned object instances being given default coercion level
+
+ ~ fixed defect in assertion in GetIDOfName()'s thrown exception
+
+ ~ fixed up various examples to use 3-parameter create() method
+
+ * requires STLSoft 1.9.60, which fixes defects seen with GCC Win32
+   compilation
+
+
+12th Sep 2008 - 0.6.1 released
+==============================
+
+ + include/vole/return_traits/time_types.hpp:
+     + com_return_traits<date_t> (which retrieves DATE values)
+     + com_return_traits<FILETIME>
+     + com_return_traits<SYSTEMTIME>
+
+ ~ include/vole/object.hpp:
+     + includes new vole/return_traits/time_types.hpp (unless
+       VOLE_NO_TIME_TYPES defined)
+
+ ~ include/vole/collection.hpp:
+     ~ minor tidying and doc markup modifications
+
+ ~ include/vole/util/common.hpp:
+ ~ include/vole/error/exceptions.hpp:
+     ~ documentation markup improvements
+
+ ~ include/vole/return_traits/builtins.hpp:
+     ~ minor typo fix
+
+ ~ test/scratch/recls.com.test/recls.com.test.cpp:
+     ~ now uses search collection directly
+
+6th Sep 2008 - 0.5.2 released
+=============================
+
+ ~ vole/collection.hpp:
+    ~ changed the way vole::collection::get__NewEnum() works: it now makes
+      two attempts to elicit the enumerator, first via DISPATCH_PROPERTYGET
+      and then as DISPATCH_METHOD
+
+ ~ vole/object.hpp:
+    ~ fixed a defect whereby an EXCEPINFO structure was not freed
+    ~ now uses the EXCEPINFO information when throwing an exception
+
+ ~ vole/error/exceptions.hpp:
+    ~ enhanced vole::invocation_exception ctor to take pointer to EXCEPINFO
+      as (optional) third parameter. If an exception information pointer is
+      passed, then exception info result code takes preference if the
+      'outer' code is DISP_E_EXCEPTION, and the the description (if any) is
+      used in preference to the system message for the result code
+
+23rd Aug 2008 - 0.5.1 released
+==============================
+
+ ~ renamed coercion level nonDestructiveTruncation to nonDestructiveCoercion
+
+ + added com_return_traits<float>
+
+ + added com_return_traits<double>
+
+ ~ changed behaviour of com_return_traits<bool> as follows:
+    ~ conversion at coercion level of naturalPromotion from VT_I1, VT_UI1,
+      VT_I2, VT_UI2, VT_I4, VT_UI4, VT_INT, VT_UINT, VT_R4 and VT_R8
+    + added conversion, at coercion level of nonDestructiveCoercion, from
+      VT_EMPTY and VT_NULL
+    + added conversion, at coercion level of valueCoercion, from
+      VT_ERROR
+
+ ~ changed behaviour of com_return_traits<short> as follows:
+    + added conversion, at coercion level of nonDestructiveCoercion, from
+      VT_INT, VT_UINT, VT_EMPTY and VT_NULL
+
+ ~ changed behaviour of com_return_traits<int> as follows:
+    + added conversion, at coercion level of naturalPromotion, from
+      VT_INT
+    + added conversion, at coercion level of nonDestructiveCoercion, from
+      VT_UINT, VT_EMPTY and VT_NULL
+
+ ~ changed behaviour of com_return_traits<long> as follows:
+    + added conversion, at coercion level of naturalPromotion, from
+      VT_INT
+    + added conversion, at coercion level of nonDestructiveCoercion, from
+      VT_UINT, VT_EMPTY and VT_NULL
+
+ ~ changed behaviour of com_return_traits<std::string> and
+   com_return_traits<std::wstring> as follows:
+    ~ now only invokes VariantChangeType() if coercion level is
+      nonDestructiveCoercion or higher
+    ~ allows value property conversion only if coercion level is
+      valueCoercion
+    + added conversion from VT_ERROR to look up error code string
+
+ ~ requires STLSoft 1.9.48 (http://stlsoft.org/)
+
+ + added test.unit.return_traits.builtins
+ + added test.unit.return_traits.std_types
+
+
+15th Aug 2008 - 0.4.4 released
+==============================
+
+ ~ change for GCC inclusion issue
+
+ ~ requires STLSoft 1.9.46 (http://stlsoft.org/)
+
+
+15th Aug 2008 - 0.4.3 released
+==============================
+
+ ~ fixed switch fall-through defect in com_return_traits<short> when
+   coercion level is nonDestructiveTruncation
+
+ ~ minor enhancements to documentation
+
+ ~ requires STLSoft 1.9.46 (http://stlsoft.org/)
+
+
+16th Jun 2008 - 0.4.2 released
+==============================
+
+ ~ fixed bug in com_return_traits<int>::convert() and
+   com_return_traits<long>::convert(), whereby any value outside the range
+   of a short was truncated.
+
+ ~ requires STLSoft 1.9.45 (http://stlsoft.org/)
+
+
+13th Apr 2008 - 0.4.1 released
+==============================
+
+ ~ refactoring of exception hierarchy - now all are implemented as distinct
+   classes, rather than as typedefs (to vole::vole_exception)
+
+ ~ requires STLSoft 1.9.31 (http://stlsoft.org/)
+
+
+8th Apr 2008 - 0.3.3 released
+=============================
+
+ * changes to default-arguments in object::create(), to avoid ambiguities
+
+ ~ requires STLSoft 1.9.30 (http://stlsoft.org/)
+
+
+18th November 2007 - 0.3.2 released
+===================================
+
+ + support for Borland C/C++ 5.82 (Turbo C++)
+
+ ~ requires STLSoft 1.9.8 (http://stlsoft.org/)
+
+2nd November 2007 - 0.3.1
+=========================
+
+ ~ vole::object may now be created with default constructor. Instances of
+   vole::object_not_connection_exception will be thrown in response to
+   attempts to use empty instances.
+
+
+5th August 2007 - 0.2.5
+=======================
+
+ ~ fixes to eliminate compiler warnings
+
+
+30th April 2007 - 0.2.4
+=======================
+
+ ~ now compatible with STLSoft 1.9.1 (version released with Extended STL,
+   vol 1: CD)
+
+
+10th April 2007 - 0.2.3
+=======================
+
+ ~ vole::object::QueryInterface() (template form) had a T where it should
+   have had an I
+
+6th April 2007 - 0.2.2
+======================
+
+ ~ vole::collection constructors now take coercion_level parameter
+
+ ~ vole::collection::operator []() now attempts both retrieval (of
+   DISPID_VALUE) as a property and, if that fails, as a method. This caters
+   for either implementation, and therefore covers all cases of "Item"
+   members.
+
+ + vole::object::is_nothing() method
+
+ + vole::object::get() method
+
+ + vole::object::lcid() method
+
+ + vole::object::QueryInterface() method overloads
+
+ ~ GetIDOfName() now reports the missing member name as part of the
+   exception in the case where GetIDsOfNames() returns DISP_E_UNKNOWNNAME.
+
+ + vole::object overload of STLSoft is_null() logical shim
+
+ + vole::object overload of STLSoft get_ptr() attribute shim
+
+ + vole::com_return_traits<bool> specialisation (for Boolean returns)
+
+
+21st January 2007 - 0.2.1
+=========================
+
+This is the first public release, including support for
+properties (get_ and put_) and methods, but not
+including support for named arguments.
+
+
+=============================== End of file ================================

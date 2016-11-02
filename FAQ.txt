@@ -1,0 +1,17 @@
+============================================================================
+VOLE - A Neat C++ COM/Automation Driver
+
+FAQ
+
+; Created:  21st January 2007
+; Updated:  18th November 2007
+
+============================================================================
+
+
+The FAQ list will be developed from questions posted on:
+ - the Users mailing list: http://sourceforge.net/mailarchive/forum.php?forum_id=51386
+ - the Help forum: http://sourceforge.net/forum/forum.php?forum_id=648399
+
+
+=============================== End of file ================================

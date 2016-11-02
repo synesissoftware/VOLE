@@ -1,0 +1,203 @@
+============================================================================
+VOLE - A Neat C++ COM/Automation Driver
+
+History
+
+; Created:  21st January 2007
+; Updated:  9th August 2012
+
+============================================================================
+
+
+9th August 2012 - 0.7.4 released
+--------------------------------
+
+ * refactored to remove all possible non-public functions to helper class, in order to present polished interface to IDE context-sensitive help / 'Intellisense'
+ * added support for MFC type arguments (currently only CString)
+ * 64-bit compatibility
+ * added makefiles for VC++ 10 and VC++ 10 (x64)
+ * added test.unit.variant test project
+ * NOTE: bundles xTests 0.16
+ * NOTE: depends on STLSoft 1.9.115
+
+
+1st February 2011 - 0.7.3 released
+----------------------------------
+
+ * simplified the naming of bin and lib targets within the makefiles
+ * various preparations for STLSoft 1.10
+ * NOTE: bundles xTests 0.16
+ * NOTE: depends on STLSoft 1.9.108
+
+
+28th April 2010 - 0.7.2 released
+--------------------------------
+
+ * added vole::object::has_member()
+ * added vole::object::get_memberId()
+	* fixed put_prop() code-generated defect
+ * NOTE: bundles xTests 0.15.1
+ * NOTE: depends on STLSoft 1.9.97
+
+
+27th April 2010 - 0.7.1 released
+--------------------------------
+
+ * Added "argument traits" mechanism, allowing arbitrary extension of compatible argument types
+ * Substantial rework of implementation
+ * NOTE: bundles xTests 0.15.1
+ * NOTE: depends on STLSoft 1.9.97
+
+
+5th March 2010 - 0.6.6 released
+-------------------------------
+
+ * fixed access control defect in collection::operator []
+ * refactored internal implementation
+ * NOTE: requires STLSoft 1.9.94
+
+
+21st January 2010 - 0.6.5 released
+----------------------------------
+
+ * added component test (that uses Excel, if present)
+ * fixed defects in conversions to int/long/float/double
+ * other minor fixes
+ * now compatible with VC++ 8+'s "safe string" library
+ * various documentation markup changes
+
+
+19th June 2009 - 0.6.4 released
+-------------------------------
+
+ * corrects defect in default constructor, whereby coercion level parameter, if specified, is ignored
+
+
+13th May 2009 - 0.6.3 released
+------------------------------
+
+ * invocation_exception now passes through the underlying scode when DISP_E_EXCEPTION
+
+
+15th Sep 2008 - 0.6.2 released
+------------------------------
+
+ * fixed defect in com_return_traits<object>::convert()
+ * fixed defect in assertion in GetIDOfName()'s thrown exception
+ * fixed up various examples to use 3-parameter create() method
+
+
+12th Sep 2008 - 0.6.1 released
+------------------------------
+
+ * added return traits specialisations for DATE, FILETIME and SYSTEMTIME
+ * documentation improvements
+
+
+6th Sep 2008 - 0.5.2 released
+-----------------------------
+
+ * changed the way vole::collection::get__NewEnum() works: it now makes two
+   attempts to elicit the enumerator, first via DISPATCH_PROPERTYGET and
+   then as DISPATCH_METHOD
+ * fixed a defect in collection::Invoke() whereby an EXCEPINFO structure was
+   not freed
+ * collection::Invoke() now uses the EXCEPINFO information when throwing an
+   exception
+ * enhanced vole::invocation_exception ctor to take pointer to EXCEPINFO as
+   (optional) third parameter. If an exception information pointer is
+   passed, then exception info result code takes preference if the 'outer'
+   code is DISP_E_EXCEPTION, and the the description (if any) is used in
+   preference to the system message for the result code
+
+
+23rd Aug 2008 - 0.5.1 released
+------------------------------
+
+ * renamed coercion level nonDestructiveTruncation to nonDestructiveCoercion
+ * added com_return_traits<float>
+ * added com_return_traits<double>
+ * changed behaviour for com_return_traits<bool>, com_return_traits<short>,
+   com_return_traits<int>, com_return_traits<long>,
+   com_return_traits<std::string> and com_return_traits<std::wstring>
+ * added test.unit.return_traits.builtins
+ * added test.unit.return_traits.std_types
+
+
+15th Aug 2008 - 0.4.4 released
+------------------------------
+
+ * change for GCC inclusion issue
+
+
+15th Aug 2008 - 0.4.3 released
+------------------------------
+
+ * fixed switch fall-through defect in com_return_traits<short> when
+   coercion level is nonDestructiveTruncation
+
+ * minor enhancements to documentation
+
+
+16th Jun 2008 - 0.4.2 released
+------------------------------
+
+ * fixed truncation bug when returning int and long types
+
+
+13th Apr 2008 - 0.4.1 released
+------------------------------
+
+ * refactoring of exception hierarchy
+
+
+8th Apr 2008 - 0.3.3 released
+-----------------------------
+
+ * changes to default-arguments in object::create(), to avoid ambiguities
+
+
+18th November 2007 - 0.3.2 released
+-----------------------------------
+
+ * support for Borland C/C++ 5.82 (Turbo C++)
+
+
+2nd November 2007 - 0.3.1 released
+----------------------------------
+
+ * now allows default construction of vole::object
+
+
+5th August 2007 - 0.2.5 released
+--------------------------------
+
+ * fixes of various compiler warnings
+
+
+30th April 2007 - 0.2.4 released
+--------------------------------
+
+ * now compatible with STLSoft 1.9.1 (version released with Extended STL,
+ vol 1: CD)
+
+
+10th April 2007 - 0.2.3 released
+--------------------------------
+
+ * fixed bug in vole::object::QueryInterface()
+
+
+6th April 2007 - 0.2.2 released
+-------------------------------
+
+ * refinements of vole::object and vole::collection facade classes
+
+
+21st January 2007 - 0.2.1 released
+----------------------------------
+
+ * This is the first released version.
+
+
+=============================== End of file ================================

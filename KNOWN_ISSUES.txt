@@ -1,0 +1,28 @@
+============================================================================
+VOLE - A Neat C++ COM/Automation Driver
+
+Known Issues:
+
+; Created:  21st January 2007
+; Updated:  27th April 2010
+
+============================================================================
+
+
+VOLE 0.7 Known Issues:
+------------------------
+
+ Named Arguments:
+
+  Named arguments are not supported at this time. I've worked out a way to
+  implement it efficiently, but haven't yet had time to implement it. It
+  will be done in a later version
+
+ Borland C/C++ 5.82 (Turbo C++) compatibility:
+
+  All compilations done on the command-line now work, and produce
+  correctly-functioning binaries. However, using the IDE still precipitates
+  internal compiler errors in some STLSoft header files. The reasons why
+  are currently unknown.
+
+=============================== End of file ================================
