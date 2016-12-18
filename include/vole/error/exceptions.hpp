@@ -4,11 +4,11 @@
  * Purpose:     Exceptions used by VOLE.
  *
  * Created:     4th January 2007
- * Updated:     4th June 2010
+ * Updated:     18th December 2016
  *
  * Home:        http://vole.sourceforge.net/
  *
- * Copyright (c) 2007-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef VOLE_DOCUMENTATION_SKIP_SECTION
 # define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_MAJOR    1
 # define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_MINOR    5
-# define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_REVISION 3
-# define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_EDIT     12
+# define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_REVISION 4
+# define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_EDIT     13
 #endif /* !VOLE_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,16 @@
 
 #include <vole/util/common.hpp>
 
-#ifndef COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS
-# include <comstl/error/exceptions.hpp>
-#endif /* !COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS */
+#if 0
+#elif defined(VOLE_STLSOFT_1_10_B01_OR_LATER)
+# ifndef COMSTL_INCL_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION
+#  include <comstl/exception/comstl_exception.hpp>
+# endif /* !COMSTL_INCL_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION */
+#else
+# ifndef COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS
+#  include <comstl/error/exceptions.hpp>
+# endif /* !COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS */
+#endif
 #ifndef COMSTL_INCL_COMSTL_ERROR_HPP_ERRORINFO_DESC
 # include <comstl/error/errorinfo_desc.hpp>
 #endif /* !COMSTL_INCL_COMSTL_ERROR_HPP_ERRORINFO_DESC */
