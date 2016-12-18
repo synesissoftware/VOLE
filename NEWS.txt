@@ -4,12 +4,14 @@ VOLE - A Neat C++ COM/Automation Driver
 News
 
 ; Created:  21st January 2007
-; Updated:  9th August 2012
+; Updated:  18th December 2016
 
 ============================================================================
 
 
 News:
+
+  18th Dec 2016     -   Release of VOLE 0.7.6
 
   9th Aug 2012      -   Release of VOLE 0.7.4
 

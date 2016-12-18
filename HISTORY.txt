@@ -4,9 +4,20 @@ VOLE - A Neat C++ COM/Automation Driver
 History
 
 ; Created:  21st January 2007
-; Updated:  9th August 2012
+; Updated:  18th December 2016
 
 ============================================================================
+
+
+9th August 2012 - 0.7.6 released
+--------------------------------
+
+ * improved warnings handling
+ * forward compatibility with STLSoft 1.10 beta 1
+ * added makefiles for Visual C++ 11, 12, 14
+ * compatibility with STLSoft 1.9
+ * NOTE: bundles xTests 0.18.10
+ * NOTE: depends on STLSoft 1.9.130
 
 
 9th August 2012 - 0.7.4 released

@@ -4,7 +4,7 @@ VOLE - A Neat C++ COM/Automation Driver
 README
 
 ; Created:  21st January 2007
-; Updated:  9th August 2012
+; Updated:  18th December 2016
 
 ============================================================================
 
@@ -28,9 +28,9 @@ VOLE is compiler-independent, and has been verified to work with the
     GCC 3.4
     Intel 8
     Metrowerks CodeWarrior 8
-    Visual C++ 6, 7.1, 8, 9 & 10
+    Visual C++ 6, 7.1, 8, 9, 10, 11, 12, and 14
 
-VOLE is dependent only on the STLSoft libraries (version 1.9.115, or
+VOLE is dependent only on the STLSoft libraries (version 1.9.130, or
   later; available from http://stlsoft.org/), which are themselves
   100% header-only.
 
@@ -50,7 +50,7 @@ To use VOLE:
 ------------
 
   1. Download and unpack the latest VOLE distribution.
-  2. Download and unpack the latest STLSoft distribution (version 1.9.115,
+  2. Download and unpack the latest STLSoft distribution (version 1.9.130,
      or later; available from http://stlsoft.org/).
   3. Set up the environment variables for VOLE and STLSoft, as described
      in the INSTALL.TXT document included in the VOLE distribution.

@@ -4,9 +4,71 @@ VOLE - A Neat C++ COM/Automation Driver
 Changes
 
 ; Created:  21st January 2007
-; Updated:  9th August 2012
+; Updated:  18th December 2016
 
 ============================================================================
+
+
+
+9th August 2012 - 0.7.6
+=======================
+
+Summary:
+--------
+
+ * improved warnings handling
+ * forward compatibility with STLSoft 1.10 beta 1
+ * added makefiles for Visual C++ 11, 12, 14
+ * compatibility with STLSoft 1.9
+ * NOTE: bundles xTests 0.18.10
+ * NOTE: depends on STLSoft 1.9.130
+
+
+Details:
+--------
+
+General:
+
+Application Layer:
+
+ ~ include/vole/error/exceptions.hpp:
+    ~ compatibility with STLSoft 1.10 beta 1
+
+ ~ include/vole/return_traits/builtins.hpp:
+    ~ improved warnings handling
+
+ ~ include/vole/util/common.hpp:
+    ~ compatibility with STLSoft 1.10 beta 1
+    ~ changed no-throw declaration from stlsoft_throw_0() to STLSOFT_NOEXCEPT
+
+Distribution:
+
+Makefiles / Project-files:
+
+ ~ build/vc11.x64/makefile:
+ ~ build/vc11/makefile:
+ ~ build/vc12.x64/makefile:
+ ~ build/vc12/makefile:
+ ~ build/vc14.x64/makefile:
+ ~ build/vc14/makefile:
+    + added VC++ 11, 12, 14
+
+Examples:
+
+Test:
+
+Test.Unit:
+
+Test.Component:
+
+Test.Performance:
+
+Test.Scratch:
+
+Depends on:
+
+ * STLSoft 1.9.130 or later
+   (http://stlsoft.org/)
 
 
 
