@@ -4,11 +4,11 @@
  * Purpose:     Root include for the VOLE library.
  *
  * Created:     10th August 2006
- * Updated:     4th November 2015
+ * Updated:     18th December 2016
  *
  * Home:        http://vole.sourceforge.net/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef VOLE_DOCUMENTATION_SKIP_SECTION
 # define VOLE_VER_VOLE_UTIL_HPP_COMMON_MAJOR    1
 # define VOLE_VER_VOLE_UTIL_HPP_COMMON_MINOR    4
-# define VOLE_VER_VOLE_UTIL_HPP_COMMON_REVISION 4
-# define VOLE_VER_VOLE_UTIL_HPP_COMMON_EDIT     28
+# define VOLE_VER_VOLE_UTIL_HPP_COMMON_REVISION 5
+# define VOLE_VER_VOLE_UTIL_HPP_COMMON_EDIT     29
 #endif /* !VOLE_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,9 +64,16 @@
                               // Note: STLSoft is available from
                               //   http://stlsoft.org/
 
-#if !defined(_STLSOFT_VER) || \
-   _STLSOFT_VER < 0x01097bff
-# error Requires STLSoft 1.9.123, or later. (www.stlsoft.org/downloads.html)
+#if 0
+#elif defined(STLSOFT_VER) && \
+      STLSOFT_VER >= 0x010c0000
+# define VOLE_STLSOFT_1_12_OR_LATER
+#elif defined(_STLSOFT_VER) && \
+      _STLSOFT_VER >= 0x010a0181
+# define VOLE_STLSOFT_1_10_B01_OR_LATER
+#elif !defined(_STLSOFT_VER) || \
+      _STLSOFT_VER < 0x010982ff
+# error This version of VOLE requires STLSoft 1.9.130, or later. (www.stlsoft.org)
 #endif /* STLSoft version */
 
 #include <comstl/comstl.h>
@@ -114,9 +121,9 @@
 
 #define VOLE_VER_MAJOR          0
 #define VOLE_VER_MINOR          7
-#define VOLE_VER_REVISION       5
+#define VOLE_VER_REVISION       6
 
-#define VOLE_VER                0x000705ff
+#define VOLE_VER                0x000706ff
 
 /* /////////////////////////////////////////////////////////////////////////
  * Feature checks
@@ -223,11 +230,32 @@ namespace vole
 # define VOLE_OPT_METHOD_PROPERTY_GETSET_PROP(RG, RS, C, GM, SM, P)
 #endif /* VOLE_METHOD_PROPERTY_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
 
 #ifndef VOLE_NO_NAMESPACE
 } // namespace vole
 #endif /* !VOLE_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Utility
+ */
+
+#ifndef VOLE_DOCUMENTATION_SKIP_SECTION
+STLSOFT_INLINE
+int
+VOLE_util_always_true_(void)
+{
+    return 1;
+}
+STLSOFT_INLINE
+int
+VOLE_util_always_false_(void)
+{
+    return 0;
+}
+#endif /* !VOLE_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
