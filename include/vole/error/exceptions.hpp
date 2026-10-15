@@ -4,11 +4,12 @@
  * Purpose:     Exceptions used by VOLE.
  *
  * Created:     4th January 2007
- * Updated:     18th December 2016
+ * Updated:     15th October 2026
  *
  * Home:        http://vole.sourceforge.net/
  *
- * Copyright (c) 2007-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +50,8 @@
 #ifndef VOLE_DOCUMENTATION_SKIP_SECTION
 # define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_MAJOR    1
 # define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_MINOR    5
-# define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_REVISION 4
-# define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_EDIT     13
+# define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_REVISION 6
+# define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_EDIT     15
 #endif /* !VOLE_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,20 +97,22 @@ namespace vole
 #endif /* !VOLE_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
- */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Functions
- */
-
-/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
+/* COMSTL renamed com_exception -> comstl_exception and dropped the old
+ * typedef once _STLSOFT_VER >= 0x010a0200 (STLSoft 1.10.2+). Keep a local
+ * parent typedef so VOLE builds against 1.9 through tip.
+ */
+#if defined(VOLE_STLSOFT_1_10_B01_OR_LATER)
+typedef comstl::comstl_exception                        vole_com_exception_parent_t;
+#else /* ? VOLE_STLSOFT_1_10_B01_OR_LATER */
+typedef comstl::com_exception                           vole_com_exception_parent_t;
+#endif /* VOLE_STLSOFT_1_10_B01_OR_LATER */
+
 /// Root exception class for VOLE
 class vole_exception
-    : public comstl::com_exception
+    : public vole_com_exception_parent_t
 {
 /// \name Member Types
 /// @{
@@ -117,7 +120,7 @@ protected:
     typedef char                        char_type;
 public:
     typedef vole_exception              class_type;
-    typedef comstl::com_exception       parent_class_type;
+    typedef vole_com_exception_parent_t parent_class_type;
 protected:
     typedef stlsoft::exception_string   string_type;
     struct ctor_args_type
@@ -150,6 +153,29 @@ protected:
     vole_exception(ctor_args_type const& args)
         : parent_class_type(args.message.c_str(), args.hr)
     {}
+/// @}
+
+/// \name Accessors
+/// @{
+public:
+    /// The <code>HRESULT</code> associated with the exception
+    ///
+    /// On STLSoft 1.10.2+ the COMSTL parent exposes <code>status_code()</code>
+    /// rather than <code>hr()</code> / <code>get_hr()</code>; these members
+    /// keep VOLE client code portable across 1.9 through tip.
+    HRESULT get_hr() const
+    {
+#if defined(VOLE_STLSOFT_1_10_B01_OR_LATER)
+        return this->status_code();
+#else /* ? VOLE_STLSOFT_1_10_B01_OR_LATER */
+        return parent_class_type::get_hr();
+#endif /* VOLE_STLSOFT_1_10_B01_OR_LATER */
+    }
+    /// \deprecated Use get_hr() instead
+    HRESULT hr() const
+    {
+        return get_hr();
+    }
 /// @}
 
 /// \name Not to be implemented

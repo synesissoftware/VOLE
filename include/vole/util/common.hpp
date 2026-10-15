@@ -4,11 +4,12 @@
  * Purpose:     Root include for the VOLE library.
  *
  * Created:     10th August 2006
- * Updated:     18th December 2016
+ * Updated:     15th October 2026
  *
  * Home:        http://vole.sourceforge.net/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +50,8 @@
 #ifndef VOLE_DOCUMENTATION_SKIP_SECTION
 # define VOLE_VER_VOLE_UTIL_HPP_COMMON_MAJOR    1
 # define VOLE_VER_VOLE_UTIL_HPP_COMMON_MINOR    4
-# define VOLE_VER_VOLE_UTIL_HPP_COMMON_REVISION 5
-# define VOLE_VER_VOLE_UTIL_HPP_COMMON_EDIT     29
+# define VOLE_VER_VOLE_UTIL_HPP_COMMON_REVISION 8
+# define VOLE_VER_VOLE_UTIL_HPP_COMMON_EDIT     32
 #endif /* !VOLE_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,6 +69,7 @@
 #elif defined(STLSOFT_VER) && \
       STLSOFT_VER >= 0x010c0000
 # define VOLE_STLSOFT_1_12_OR_LATER
+# define VOLE_STLSOFT_1_10_B01_OR_LATER
 #elif defined(_STLSOFT_VER) && \
       _STLSOFT_VER >= 0x010a0181
 # define VOLE_STLSOFT_1_10_B01_OR_LATER
@@ -83,7 +85,7 @@
  */
 
 /** \def VOLE_VER_MAJOR
- * \brief The major version number of STLSoft
+ * \brief The major version number of VOLE
  *
  * A change to the major version component implies that a dramatic change
  * has occurred in the libraries, such that considerable changes to source
@@ -91,7 +93,7 @@
  */
 
 /** \def VOLE_VER_MINOR
- * \brief The minor version number of STLSoft
+ * \brief The minor version number of VOLE
  *
  * A change to the minor version component imply that a significant change
  * has occurred to the libraries, either in the addition of new functionality
@@ -99,31 +101,50 @@
  * recompilation and code change may be necessitated.
  */
 
-/** \def VOLE_VER_REVISION
- * \brief The revision version number of STLSoft
+/** \def VOLE_VER_PATCH
+ * \brief The patch version number of VOLE
  *
- * A change to the revision version component imply that a bug has been
- * fixed. Dependent code should be recompiled in order to pick up the
- * changes.
+ * A change to the patch version component imply that a bug has been fixed.
+ * Dependent code should be recompiled in order to pick up the changes.
+ */
+
+/** \def VOLE_VER_RELSTATUS
+ * \brief Release-status discriminator in the low byte of VOLE_VER
+ *
+ * Pre-alpha, alpha, beta, release-candidate, or full release. `0xFF` for a
+ * numbered (non-alpha, non-beta, non-rc) release.
  */
 
 /** \def VOLE_VER
- * \brief The current composite version number of STLSoft
+ * \brief The current composite version number of VOLE
  *
  * In addition to the individual version symbols - VOLE_VER_MAJOR,
- * VOLE_VER_MINOR and VOLE_VER_REVISION - a composite symbol
- * VOLE_VER is defined, where:
+ * VOLE_VER_MINOR, VOLE_VER_PATCH, and VOLE_VER_RELSTATUS - a composite
+ * symbol VOLE_VER is defined, where:
  *  - bits 24-31: the major version
  *  - bits 16-23: the minor version
- *  - bits 8-15: the revision version
- *  - bits 0-7: the beta number; if not a beta, it is 0xFF
+ *  - bits 8-15: the patch version
+ *  - bits 0-7: the release status (`0xFF` for a full release)
+ *
+ * For 0.7.7 this evaluates to `0x000707FF`.
  */
 
 #define VOLE_VER_MAJOR          0
 #define VOLE_VER_MINOR          7
-#define VOLE_VER_REVISION       6
+#define VOLE_VER_PATCH          7
+#define VOLE_VER_RELSTATUS      0xFF
 
-#define VOLE_VER                0x000706ff
+#define VOLE_VER \
+    (0\
+        |   (   VOLE_VER_MAJOR       << 24   ) \
+        |   (   VOLE_VER_MINOR       << 16   ) \
+        |   (   VOLE_VER_PATCH       <<  8   ) \
+        |   (   VOLE_VER_RELSTATUS   <<  0   ) \
+    )
+
+#ifndef VOLE_DOCUMENTATION_SKIP_SECTION
+# define VOLE_VER_REVISION      VOLE_VER_PATCH
+#endif /* !VOLE_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Feature checks
@@ -155,7 +176,7 @@ namespace vole
  */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1310 
+    _MSC_VER < 1310
 #else /* ? compiler */
 # define VOLE_METHOD_TEMPLATE_RETURN_SUPPORT
 #endif /* compiler */

@@ -1,0 +1,102 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+      - boilerplate
+      - idiomatic
+      - freeze
+      - rc1
+      - rc2
+      - rc3
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  # VOLE is Windows COM/Automation only. Compile the examples against MSVC
+  # for each supported STLSoft line; do not run them (they need Excel /
+  # pantheios.COM at runtime).
+  #
+  # STLSoft-1.9 has no CMake package — install headers only and pass
+  # -DSTLSOFT=. Other lines install via the local composite action.
+  # Do not CI-shim STLSoft; fix recognition in the versioned STLSoft
+  # repositories when modern MSVC / stdlib is rejected.
+  build-examples:
+    name: Build examples (windows-cl / STLSoft ${{ matrix.stlsoft_label }})
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - stlsoft_label: "1.9"
+            stlsoft_repo: STLSoft-1.9
+            install_mode: headers
+          - stlsoft_label: "1.10"
+            stlsoft_repo: STLSoft-1.10
+            install_mode: cmake
+          - stlsoft_label: "1.11"
+            stlsoft_repo: STLSoft-1.11
+            install_mode: cmake
+          - stlsoft_label: tip
+            stlsoft_repo: STLSoft
+            install_mode: cmake
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install STLSoft (headers)
+        if: matrix.install_mode == 'headers'
+        shell: bash
+        run: |
+          set -euo pipefail
+          SRC="${RUNNER_TEMP}/STLSoft-src"
+          git clone --depth 1 \
+            "https://github.com/synesissoftware/${{ matrix.stlsoft_repo }}" \
+            "$SRC"
+          echo "STLSOFT=${SRC}" >> "$GITHUB_ENV"
+
+      - name: Install STLSoft (CMake package)
+        if: matrix.install_mode == 'cmake'
+        uses: ./.github/actions/install-sis-deps
+        with:
+          build-type: ${{ env.BUILD_TYPE }}
+          c-compiler: cl
+          cpp-compiler: cl
+          dependencies: ${{ matrix.stlsoft_repo }}
+
+      - name: Configure (headers)
+        if: matrix.install_mode == 'headers'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -B build -S . \
+            -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
+            -DSTLSOFT="${STLSOFT}" \
+            -DBUILD_EXAMPLES=ON
+
+      - name: Configure (CMake package)
+        if: matrix.install_mode == 'cmake'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -B build -S . \
+            -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
+            -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
+            -DBUILD_EXAMPLES=ON
+
+      - name: Build examples
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake --build build --config "${{ env.BUILD_TYPE }}" --parallel
