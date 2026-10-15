@@ -12,8 +12,9 @@ on the **STLSoft** libraries (also header-only), version **1.9.130** or later.
 
 ## Status
 
-This project is **frozen** / **obsolete**. There is no maintained CMake or CI
-install path. Prefer native MSVC COM / Automation facilities for new work.
+This project is **frozen** / **obsolete**. Prefer native MSVC COM / Automation
+facilities for new work. CI compiles the example programs on Windows/MSVC; it
+does not run them.
 
 
 ## Use
@@ -38,6 +39,19 @@ Include the main header:
 ```cpp
 #include <vole/vole.hpp>
 ```
+
+
+## CMake (examples only)
+
+With an installed **STLSoft** CMake package:
+
+```bash
+cmake -B build -S . -DCMAKE_PREFIX_PATH=<stlsoft-prefix> -DBUILD_EXAMPLES=ON
+cmake --build build --config Release
+```
+
+This builds the three programs under **examples/**. Do not expect them to run
+without Excel / pantheios.COM present.
 
 
 <!-- ########################### end of file ########################### -->

@@ -24,7 +24,8 @@ obsolete.
 ## Q2: "How do I install VOLE?"
 
 See [INSTALL.md](./INSTALL.md). **VOLE** is header-only and needs **STLSoft**
-1.9.130 or later on the include path.
+1.9.130 or later on the include path. Optional **CMake** builds the example
+programs only (CI compiles them on Windows/MSVC; it does not run them).
 
 
 ## Q3: "What should I use instead?"

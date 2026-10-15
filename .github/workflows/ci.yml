@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+      - boilerplate
+      - idiomatic
+      - freeze
+      - rc1
+      - rc2
+      - rc3
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  # VOLE is Windows COM/Automation only. Compile the examples against a
+  # modern MSVC + installed STLSoft; do not run them (they need Excel /
+  # pantheios.COM at runtime).
+  build-examples:
+    name: Build examples (windows-cl)
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install STLSoft
+        uses: ./.github/actions/install-sis-deps
+        with:
+          build-type: ${{ env.BUILD_TYPE }}
+          c-compiler: cl
+          cpp-compiler: cl
+          dependencies: STLSoft
+
+      - name: Configure
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -B build -S . \
+            -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
+            -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
+            -DBUILD_EXAMPLES=ON
+
+      - name: Build examples
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake --build build --config "${{ env.BUILD_TYPE }}" --parallel

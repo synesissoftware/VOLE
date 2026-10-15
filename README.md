@@ -9,6 +9,7 @@ COM Automation (aka OLE) C++ wrapper library
 [![License](https://img.shields.io/badge/License-BSD--2--Clause-blue.svg)](./LICENSE)
 [![GitHub release](https://img.shields.io/github/v/release/synesissoftware/VOLE.svg)](https://github.com/synesissoftware/VOLE/releases/latest)
 [![Last Commit](https://img.shields.io/github/last-commit/synesissoftware/VOLE)](https://github.com/synesissoftware/VOLE/commits/master)
+[![CI](https://github.com/synesissoftware/VOLE/actions/workflows/ci.yml/badge.svg)](https://github.com/synesissoftware/VOLE/actions/workflows/ci.yml)
 
 
 ## Table of Contents <!-- omit in toc -->
@@ -31,9 +32,10 @@ on **STLSoft**.
 
 ## Developer Experience
 
-This project is **frozen**. There is no maintained build/CI path for new
-adopters. See [INSTALL.md](./INSTALL.md) for the historical header-only include
-setup. Prefer native MSVC COM / Automation facilities for new work.
+This project is **frozen**. Prefer native MSVC COM / Automation facilities for
+new work. A minimal Windows/MSVC CI job compiles the example programs (it does
+not run them). See [INSTALL.md](./INSTALL.md) for the header-only include setup
+and the optional **CMake** example build.
 
 
 ## Project status

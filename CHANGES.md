@@ -3,11 +3,12 @@
 
 ## 0.7.7 - 15th October 2026
 
-* Project frozen and marked obsolete; no further development planned;
+* Project **FROZEN** and marked **OBSOLETE**; no further development planned;
 * Prefer native MSVC COM / Automation facilities for new work;
 * Converted project documentation to Markdown (**CHANGES.md**, **NEWS.md**, **README.md**, and related);
 * Removed legacy **HISTORY.txt** (content subsumed by **CHANGES.md**);
 * Version macros: `VOLE_VER_PATCH`, `VOLE_VER_RELSTATUS`, computed `VOLE_VER` (`0x000707FF`); `VOLE_VER_REVISION` aliases `VOLE_VER_PATCH`;
+* Added **CMakeLists.txt** and Windows/MSVC CI that compiles (but does not run) the example programs against **STLSoft**;
 
 
 ## 0.7.6 - 9th August 2012

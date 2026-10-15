@@ -18,6 +18,7 @@
 ## Packaging improvements
 
 * [x] ~~~Convert top-level docs to Markdown; remove **HISTORY.txt**~~~ - ✅;
+* [x] ~~~Windows/MSVC CI compiling examples (no run)~~~ - ✅;
 
 
 <!-- ########################### end of file ########################### -->
