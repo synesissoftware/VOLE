@@ -50,8 +50,8 @@
 #ifndef VOLE_DOCUMENTATION_SKIP_SECTION
 # define VOLE_VER_VOLE_UTIL_HPP_COMMON_MAJOR    1
 # define VOLE_VER_VOLE_UTIL_HPP_COMMON_MINOR    4
-# define VOLE_VER_VOLE_UTIL_HPP_COMMON_REVISION 7
-# define VOLE_VER_VOLE_UTIL_HPP_COMMON_EDIT     31
+# define VOLE_VER_VOLE_UTIL_HPP_COMMON_REVISION 8
+# define VOLE_VER_VOLE_UTIL_HPP_COMMON_EDIT     32
 #endif /* !VOLE_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,6 +69,7 @@
 #elif defined(STLSOFT_VER) && \
       STLSOFT_VER >= 0x010c0000
 # define VOLE_STLSOFT_1_12_OR_LATER
+# define VOLE_STLSOFT_1_10_B01_OR_LATER
 #elif defined(_STLSOFT_VER) && \
       _STLSOFT_VER >= 0x010a0181
 # define VOLE_STLSOFT_1_10_B01_OR_LATER

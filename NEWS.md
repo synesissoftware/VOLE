@@ -3,7 +3,7 @@
 
 | Date                | News Item                 | Details |
 |---------------------|---------------------------|---------|
-| 15th October 2026   | Release of [**VOLE** 0.7.7](https://github.com/synesissoftware/VOLE/releases/tag/0.7.7) | Frozen; Markdown docs; Windows/MSVC CI builds examples |
+| 15th October 2026   | Release of [**VOLE** 0.7.7](https://github.com/synesissoftware/VOLE/releases/tag/0.7.7) | Frozen; Markdown docs; CI matrix over **STLSoft** 1.9–tip |
 | 18th December 2016  | Release of VOLE 0.7.6     | Warnings; STLSoft 1.10 forward-compat; VC++ 11/12/14 makefiles |
 | 2nd November 2016   | Release of VOLE 0.7.5     | GitHub publication; `VOLE_VER` 0.7.5; STLSoft 1.9.123+ |
 | 9th August 2012     | Release of VOLE 0.7.4     |         |

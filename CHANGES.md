@@ -8,7 +8,10 @@
 * Converted project documentation to Markdown (**CHANGES.md**, **NEWS.md**, **README.md**, and related);
 * Removed legacy **HISTORY.txt** (content subsumed by **CHANGES.md**);
 * Version macros: `VOLE_VER_PATCH`, `VOLE_VER_RELSTATUS`, computed `VOLE_VER` (`0x000707FF`); `VOLE_VER_REVISION` aliases `VOLE_VER_PATCH`;
-* Added **CMakeLists.txt** and Windows/MSVC CI that compiles (but does not run) the example programs against **STLSoft**;
+* Compatible with **STLSoft** 1.9, 1.10, 1.11, and tip: `vole_exception` parents `comstl::com_exception` or `comstl::comstl_exception` as appropriate; 1.12 gates cascade to the 1.10 feature define;
+* Added **CMakeLists.txt** with `find_package(STLSoft)` or `STLSOFT` path mode (for 1.9, which has no CMake package);
+* Windows/MSVC CI builds (but does not run) examples in a matrix over **STLSoft-1.9**, **STLSoft-1.10**, **STLSoft-1.11**, and **STLSoft** (tip);
+* **AUTHORS.md** defect-reports list ordered lexicographically by surname (handles where no surname);
 
 
 ## 0.7.6 - 9th August 2012

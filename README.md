@@ -33,9 +33,9 @@ on **STLSoft**.
 ## Developer Experience
 
 This project is **frozen**. Prefer native MSVC COM / Automation facilities for
-new work. A minimal Windows/MSVC CI job compiles the example programs (it does
-not run them). See [INSTALL.md](./INSTALL.md) for the header-only include setup
-and the optional **CMake** example build.
+new work. Windows/MSVC CI compiles the example programs (it does not run them)
+against **STLSoft** 1.9, 1.10, 1.11, and tip. See [INSTALL.md](./INSTALL.md)
+for the header-only include setup and the optional **CMake** example build.
 
 
 ## Project status
@@ -64,7 +64,7 @@ and the optional **CMake** example build.
 
 ### Dependencies
 
-* Efferent (fan-out): **STLSoft** (header-only; historically 1.9.130 or later);
+* Efferent (fan-out): **STLSoft** (header-only; 1.9.130 or later, including 1.10, 1.11, and tip);
 * Afferent (fan-in): none actively maintained.
 
 

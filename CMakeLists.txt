@@ -91,15 +91,45 @@ endif()
 
 # ##########################################################
 # dependencies
+#
+# STLSoft may be located via find_package() or, for lines without a CMake
+# package (notably STLSoft 1.9), via the STLSOFT CMake/environment variable
+# pointing at the project root (with an include/ subdirectory).
 
-find_package(STLSoft REQUIRED)
+set(_VOLE_STLSOFT_VIA_PACKAGE FALSE)
 
-if(NOT STLSoft_FOUND)
+if(NOT DEFINED STLSOFT AND NOT DEFINED ENV{STLSOFT})
 
-	message(FATAL_ERROR "No usable installation of STLSoft was found.")
+	find_package(STLSoft REQUIRED)
+
+	if(NOT STLSoft_FOUND)
+
+		message(FATAL_ERROR "No usable installation of STLSoft was found.")
+	else()
+
+		message("-- CMake package STLSoft found (version ${STLSoft_VERSION})")
+		set(_VOLE_STLSOFT_VIA_PACKAGE TRUE)
+	endif()
 else()
 
-	message("-- CMake package STLSoft found (version ${STLSoft_VERSION})")
+	if(DEFINED STLSOFT)
+
+		message("-- STLSOFT provided as CMake variable with value '${STLSOFT}'")
+
+		set(STLSOFT_INCLUDE_DIR ${STLSOFT}/include)
+	else()
+
+		message("-- STLSOFT provided as environment variable with value '$ENV{STLSOFT}'")
+
+		set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
+	endif()
+
+	get_filename_component(STLSOFT_INCLUDE_DIR "${STLSOFT_INCLUDE_DIR}" ABSOLUTE)
+
+	if(NOT EXISTS "${STLSOFT_INCLUDE_DIR}/stlsoft/stlsoft.h")
+
+		message(FATAL_ERROR "STLSoft headers not found under '${STLSOFT_INCLUDE_DIR}'.")
+	endif()
 endif()
 
 
@@ -114,13 +144,29 @@ target_include_directories(VOLE
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
 
-target_link_libraries(VOLE
-	INTERFACE
-		STLSoft::STLSoft
-		ole32
-		oleaut32
-		uuid
-)
+if(_VOLE_STLSOFT_VIA_PACKAGE)
+
+	target_link_libraries(VOLE
+		INTERFACE
+			STLSoft::STLSoft
+			ole32
+			oleaut32
+			uuid
+	)
+else()
+
+	target_include_directories(VOLE
+		INTERFACE
+			${STLSOFT_INCLUDE_DIR}
+	)
+
+	target_link_libraries(VOLE
+		INTERFACE
+			ole32
+			oleaut32
+			uuid
+	)
+endif()
 
 
 # ##########################################################
