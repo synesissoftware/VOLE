@@ -30,6 +30,10 @@ jobs:
   #
   # STLSoft-1.9 has no CMake package — install headers only and pass
   # -DSTLSOFT=. Other lines install via the local composite action.
+  #
+  # STLSoft 1.9 / 1.10 reject MSVC toolsets newer than early vc16; GitHub
+  # windows-latest is newer, so those cells apply a compile-only CI shim
+  # that replaces the hard #error with a version-string define.
   build-examples:
     name: Build examples (windows-cl / STLSoft ${{ matrix.stlsoft_label }})
     runs-on: windows-latest
@@ -40,15 +44,19 @@ jobs:
           - stlsoft_label: "1.9"
             stlsoft_repo: STLSoft-1.9
             install_mode: headers
+            shim_msvc: true
           - stlsoft_label: "1.10"
             stlsoft_repo: STLSoft-1.10
             install_mode: cmake
+            shim_msvc: true
           - stlsoft_label: "1.11"
             stlsoft_repo: STLSoft-1.11
             install_mode: cmake
+            shim_msvc: false
           - stlsoft_label: tip
             stlsoft_repo: STLSoft
             install_mode: cmake
+            shim_msvc: false
 
     steps:
       - uses: actions/checkout@v4
@@ -72,6 +80,27 @@ jobs:
           c-compiler: cl
           cpp-compiler: cl
           dependencies: ${{ matrix.stlsoft_repo }}
+
+      - name: Shim STLSoft MSVC recognition (1.9 / 1.10)
+        if: matrix.shim_msvc
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.install_mode }}" = "headers" ]; then
+            ROOT="${STLSOFT}"
+          else
+            ROOT="${SIS_DEPS}"
+          fi
+          HDR="${ROOT}/include/stlsoft/stlsoft.h"
+          test -f "$HDR"
+          # Replace the hard #error for unrecognised vc16+ with a benign
+          # version string so examples can compile on modern GH MSVC.
+          perl -i -pe 's/^(\s*)#\s*error Visual C\+\+ version that is >= vc16 is not recognised/$1#   define STLSOFT_COMPILER_VERSION_STRING "Visual C++ 16+ (CI shim)"/' "$HDR"
+          if grep -q 'Visual C++ version that is >= vc16 is not recognised' "$HDR"; then
+            echo "::error::MSVC recognition shim did not apply to ${HDR}"
+            exit 1
+          fi
+          echo "Applied MSVC recognition shim to ${HDR}"
 
       - name: Configure (headers)
         if: matrix.install_mode == 'headers'

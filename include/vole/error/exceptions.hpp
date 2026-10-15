@@ -50,8 +50,8 @@
 #ifndef VOLE_DOCUMENTATION_SKIP_SECTION
 # define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_MAJOR    1
 # define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_MINOR    5
-# define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_REVISION 5
-# define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_EDIT     14
+# define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_REVISION 6
+# define VOLE_VER_VOLE_UTIL_HPP_EXCEPTIONS_EDIT     15
 #endif /* !VOLE_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -153,6 +153,29 @@ protected:
     vole_exception(ctor_args_type const& args)
         : parent_class_type(args.message.c_str(), args.hr)
     {}
+/// @}
+
+/// \name Accessors
+/// @{
+public:
+    /// The <code>HRESULT</code> associated with the exception
+    ///
+    /// On STLSoft 1.10.2+ the COMSTL parent exposes <code>status_code()</code>
+    /// rather than <code>hr()</code> / <code>get_hr()</code>; these members
+    /// keep VOLE client code portable across 1.9 through tip.
+    HRESULT get_hr() const
+    {
+#if defined(VOLE_STLSOFT_1_10_B01_OR_LATER)
+        return this->status_code();
+#else /* ? VOLE_STLSOFT_1_10_B01_OR_LATER */
+        return parent_class_type::get_hr();
+#endif /* VOLE_STLSOFT_1_10_B01_OR_LATER */
+    }
+    /// \deprecated Use get_hr() instead
+    HRESULT hr() const
+    {
+        return get_hr();
+    }
 /// @}
 
 /// \name Not to be implemented

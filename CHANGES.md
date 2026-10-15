@@ -9,6 +9,8 @@
 * Removed legacy **HISTORY.txt** (content subsumed by **CHANGES.md**);
 * Version macros: `VOLE_VER_PATCH`, `VOLE_VER_RELSTATUS`, computed `VOLE_VER` (`0x000707FF`); `VOLE_VER_REVISION` aliases `VOLE_VER_PATCH`;
 * Compatible with **STLSoft** 1.9, 1.10, 1.11, and tip: `vole_exception` parents `comstl::com_exception` or `comstl::comstl_exception` as appropriate; 1.12 gates cascade to the 1.10 feature define;
+* `vole_exception::get_hr()` / `hr()` wrap parent `get_hr()` (1.9) or `status_code()` (1.10.2+), so examples and clients keep a stable HRESULT accessor;
+* CI shims **STLSoft** 1.9 / 1.10 MSVC version recognition for modern GitHub-hosted toolsets (those lines otherwise `#error` on vc16+);
 * Added **CMakeLists.txt** with `find_package(STLSoft)` or `STLSOFT` path mode (for 1.9, which has no CMake package);
 * Windows/MSVC CI builds (but does not run) examples in a matrix over **STLSoft-1.9**, **STLSoft-1.10**, **STLSoft-1.11**, and **STLSoft** (tip);
 * **AUTHORS.md** defect-reports list ordered lexicographically by surname (handles where no surname);
